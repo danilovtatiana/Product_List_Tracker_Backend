@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import java.math.BigDecimal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +17,9 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.product.listtracker.dao.ProductRepository;
+import com.product.listtracker.dao.StockRepository;
 import com.product.listtracker.entities.Product;
+import com.product.listtracker.entities.Stock;
 import com.product.listtracker.exceptions.ProductNotFoundException;
 
 @Service
@@ -25,6 +28,9 @@ public class ProductService {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private StockRepository stockRepository;
 
 	@PostConstruct
 	private void populateProductList() {
@@ -44,6 +50,14 @@ public class ProductService {
 	
 	public Product addNewProduct(Product product) {
 		return productRepository.save(product);
+	}
+	
+	public Product addNewProductAndCreateStock(Product product) {
+		Product savedProduct = productRepository.save(product);
+		Stock newStock = new Stock(0L, new BigDecimal("0.0"), savedProduct);
+		stockRepository.save(newStock);
+		
+		return savedProduct;
 	}
 	
 	public List<Product> findAllProducts(){

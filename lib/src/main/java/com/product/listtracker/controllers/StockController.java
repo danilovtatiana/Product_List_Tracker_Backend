@@ -38,17 +38,17 @@ public class StockController {
 //		return  new ResponseEntity<>(stock, HttpStatus.OK);
 //	}
 //	
-	@PostMapping("/add")
-	public ResponseEntity<Stock> addStock(@RequestBody Stock stock){
-		Stock newStock = stockService.addNewStock(stock);
-		return new ResponseEntity<>(newStock, HttpStatus.CREATED);
-	}
-//	
-//	@PutMapping("/update")
-//	public ResponseEntity<Stock> updateStock(@RequestBody Stock stock){
-//		Stock updateStock = stockService.updateStock(stock);
-//		return new ResponseEntity<>(updateStock, HttpStatus.OK);
+//	@PostMapping("/add")
+//	public ResponseEntity<Stock> addStock(@RequestBody Stock stock){
+//		Stock newStock = stockService.addNewStock(stock);
+//		return new ResponseEntity<>(newStock, HttpStatus.CREATED);
 //	}
+////	
+	@PutMapping("/update")
+	public ResponseEntity<Stock> updateStock(@RequestBody Stock stock){
+		Stock updateStock = stockService.updateStock(stock);
+		return new ResponseEntity<>(updateStock, HttpStatus.OK);
+	}
 //	
 //
 //	@DeleteMapping(value = "/delete/{stockId}")

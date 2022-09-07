@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/producttracker
+    url: jdbc:postgresql://localhost:5432/productlisttracker
     username: postgres
     password: postgresq1w2
   jpa:

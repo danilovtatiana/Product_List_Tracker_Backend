@@ -11,6 +11,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table
 public class Account {
@@ -33,6 +38,8 @@ public class Account {
 	@Column (name = "PASSWORD", nullable = false)
 	private String password;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
+	@ApiModelProperty(required = true, example = "2022-09-02")
 	@Column (name = "CREATION_DATE", nullable = false)
 	private LocalDateTime creationDate;
 

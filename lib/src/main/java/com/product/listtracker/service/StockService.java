@@ -21,17 +21,17 @@ public class StockService {
 	private StockRepository stockRepository;
 	
 	
-	public Stock addNewStock(Stock stock) {
-		return stockRepository.save(stock);
-	}
+//	public Stock addNewStock(Stock stock) {
+//		return stockRepository.save(stock);
+//	}
 	
 	public List<Stock> findStock(){
 		return stockRepository.findAll();
 	}
 	
-//	public Stock updateStock(Stock stock) {
-//		return stockRepository.save(stock);
-//	}
+	public Stock updateStock(Stock stock) {
+		return stockRepository.save(stock);
+	}
 	
 //	public Stock findStockById(Long stockId) {
 //		return stockRepository.findStockById(stockId).orElseThrow(() -> new StockNotFoundException("Stock by ID " + stockId + "was not found" ));
