@@ -61,7 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.authorizeHttpRequests()
 		    .antMatchers("/account/register").permitAll()
-			.antMatchers("/patients/**", "/appointment/**", "/account/**").authenticated()
+			.antMatchers("/product/**", "/stock/**", "/account/**").authenticated()
 		.and().formLogin()
 			.defaultSuccessUrl("/swagger-ui/index.html")
 			.failureHandler(new CustomAuthneticationFailureHandler())

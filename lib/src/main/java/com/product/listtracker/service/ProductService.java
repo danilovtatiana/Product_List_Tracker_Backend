@@ -2,6 +2,7 @@ package com.product.listtracker.service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Consumer;
 
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
@@ -48,6 +49,22 @@ public class ProductService {
 		}
 	}
 	
+//	private void updateStock() {
+//		List<Product> allProducts = productRepository.findAll();
+//		List<Stock> allStock = stockRepository.findAll();
+//		for (int i=0; i< allProducts.size(); i++) 
+//		{ 
+//		    Product productFromDB = allProducts.get(i);
+//		    //check if exists stock with this product
+//		    if (!allStock.stream().filter(o -> o.getProduct().getPzn().equals(productFromDB.getPzn())).findFirst().isPresent()) {
+//		    	//add new stock with productFromDB like product model. 
+//		    	Stock newStock = new Stock(0L, new BigDecimal("0.0"), productFromDB);
+//				stockRepository.save(newStock);
+//		    }
+//		    
+//		} 
+//	}
+	
 	public Product addNewProduct(Product product) {
 		return productRepository.save(product);
 	}
@@ -56,6 +73,7 @@ public class ProductService {
 		Product savedProduct = productRepository.save(product);
 		Stock newStock = new Stock(0L, new BigDecimal("0.0"), savedProduct);
 		stockRepository.save(newStock);
+		
 		
 		return savedProduct;
 	}
