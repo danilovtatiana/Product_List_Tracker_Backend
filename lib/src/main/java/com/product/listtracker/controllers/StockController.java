@@ -32,9 +32,9 @@ public class StockController {
 		return  new ResponseEntity<>(stock, HttpStatus.OK);
 	}
 	
-//	@GetMapping("/stock/{stockId}")
-//	public ResponseEntity <Stock> getStocktById(@PathVariable("stockId") Long stockId){
-//		Stock stock = stockService.findStockById(stockId);
+//	@GetMapping("/stock/{pzn}")
+//	public ResponseEntity <Stock> getStocktById(@PathVariable("pzn") String pzn){
+//		Stock stock = stockService.findStockByProductPzn(pzn);
 //		return  new ResponseEntity<>(stock, HttpStatus.OK);
 //	}
 //	

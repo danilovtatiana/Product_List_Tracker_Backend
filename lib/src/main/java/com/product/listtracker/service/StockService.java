@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.product.listtracker.dao.StockRepository;
 import com.product.listtracker.entities.Stock;
+import com.product.listtracker.exceptions.ProductNotFoundException;
 import com.product.listtracker.exceptions.StockNotFoundException;
 
 
@@ -34,9 +35,9 @@ public class StockService {
 		return stockRepository.save(stock);
 	}
 	
-//	public Stock findStockById(Long stockId) {
-//		return stockRepository.findStockById(stockId).orElseThrow(() -> new StockNotFoundException("Stock by ID " + stockId + "was not found" ));
-//	
+//	public Stock findStockByProductPzn(String pzn) {
+//		return stockRepository.findStockById(pzn).orElseThrow(() -> new ProductNotFoundException("Product by ID " + pzn + "was not found" ));
+//				
 //	}
 	
 //	public void deleteStock(Long stockId) {
