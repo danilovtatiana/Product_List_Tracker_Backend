@@ -10,6 +10,4 @@ import com.product.listtracker.entities.Stock;
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Long>{
 
-//	Optional<Stock> findStockById(String pzn);
-
 }

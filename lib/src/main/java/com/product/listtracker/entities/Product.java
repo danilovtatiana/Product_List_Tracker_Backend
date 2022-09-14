@@ -1,5 +1,7 @@
 package com.product.listtracker.entities;
 
+import java.util.stream.Stream;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -98,6 +100,7 @@ public class Product {
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
+
 
 }
 

@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.product.listtracker.dao.ProductRepository;
 import com.product.listtracker.dao.StockRepository;
+import com.product.listtracker.dto.ProductDto;
 import com.product.listtracker.entities.Product;
 import com.product.listtracker.entities.Stock;
 import com.product.listtracker.exceptions.ProductNotFoundException;
@@ -69,22 +71,35 @@ public class ProductService {
 		return productRepository.save(product);
 	}
 	
-	public Product addNewProductAndCreateStock(Product product) {
-		Product savedProduct = productRepository.save(product);
+	public ProductDto addNewProductAndCreateStock(ProductDto productDto) {
+		
+		Product savedProduct = new Product();
+		BeanUtils.copyProperties(productDto, savedProduct);
+		
+		savedProduct = productRepository.save(savedProduct);
 		Stock newStock = new Stock(0L, new BigDecimal("0.0"), savedProduct);
 		stockRepository.save(newStock);
 		
-		
-		return savedProduct;
+		productDto = new ProductDto(savedProduct);
+		return productDto;
 	}
 	
 	public List<Product> findAllProducts(){
 		return productRepository.findAll();
 	}
 	
-	public Product updateProduct(Product product) {
-		return productRepository.save(product);
+	public ProductDto updateProduct(ProductDto productDto) {
+		
+		Product updatedProduct = new Product();
+		BeanUtils.copyProperties(productDto, updatedProduct);
+		
+		updatedProduct = productRepository.save(updatedProduct);
+		
+		productDto = new ProductDto(updatedProduct);
+	
+		return productDto;
 	}
+	
 	
 	public Product findProductByPzn(String pzn) {
 		return productRepository.findProductByPzn(pzn).orElseThrow(() -> new ProductNotFoundException("Product by pzn " + pzn + "was not found" ));

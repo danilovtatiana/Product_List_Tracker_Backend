@@ -32,7 +32,7 @@ public class Account {
 	@NotBlank (message = "Username cannot be blank!")
 	@Column (name = "USERNAME", length = 50, nullable = false)
 	@Size (min = 5, max = 50)
-	private String userName;
+	private String username;
 	
 	@NotBlank (message = "Password cannot be blank!")
 	@Column (name = "PASSWORD", nullable = false)
@@ -60,11 +60,11 @@ public class Account {
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 
 	public String getPassword() {
@@ -85,7 +85,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [accountId=" + accountId + ", email=" + email + ", userName=" + userName + ", password="
+		return "Account [accountId=" + accountId + ", email=" + email + ", userName=" + username + ", password="
 				+ password + ", creationDate=" + creationDate + "]";
 	}
 	

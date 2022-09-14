@@ -67,7 +67,10 @@ public class Stock {
 		this.product = product;
 	}
 	
+	
+	
 	public Stock() {}
+
 
 	public Stock(
 				Long quantity,
