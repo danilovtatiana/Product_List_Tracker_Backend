@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.product.listtracker.exceptions.AccountAlreadyExistsException;
+import com.product.listtracker.exceptions.AccountDoesNotExistException;
+import com.product.listtracker.exceptions.PznAlreadyExistsException;
+import com.product.listtracker.exceptions.UsernameAlreadyExistsException;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -19,6 +22,19 @@ public class ControllerExceptionHandler {
 	
 	@ExceptionHandler(AccountAlreadyExistsException.class)
 	public ResponseEntity<String> dataIntegrityException(AccountAlreadyExistsException e) {
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(UsernameAlreadyExistsException.class)
+	public ResponseEntity<String> dataIntegrityException(UsernameAlreadyExistsException e) {
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+	}
+	@ExceptionHandler(AccountDoesNotExistException.class)
+	public ResponseEntity<String> dataIntegrityException(AccountDoesNotExistException e) {
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+	}
+	@ExceptionHandler(PznAlreadyExistsException.class)
+	public ResponseEntity<String> dataIntegrityException(PznAlreadyExistsException e) {
 		return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 	

@@ -24,6 +24,7 @@ import com.product.listtracker.dto.ProductDto;
 import com.product.listtracker.entities.Product;
 import com.product.listtracker.entities.Stock;
 import com.product.listtracker.exceptions.ProductNotFoundException;
+import com.product.listtracker.exceptions.PznAlreadyExistsException;
 
 @Service
 public class ProductService {
@@ -71,10 +72,14 @@ public class ProductService {
 		return productRepository.save(product);
 	}
 	
-	public ProductDto addNewProductAndCreateStock(ProductDto productDto) {
+	public ProductDto addNewProductAndCreateStock(ProductDto productDto) throws Exception {
 		
 		Product savedProduct = new Product();
 		BeanUtils.copyProperties(productDto, savedProduct);
+		
+		if (productRepository.existsById(productDto.getPzn())) {
+			throw new PznAlreadyExistsException(" " + productDto.getPzn() + " ");
+		}
 		
 		savedProduct = productRepository.save(savedProduct);
 		Stock newStock = new Stock(0L, new BigDecimal("0.0"), savedProduct);
@@ -101,7 +106,7 @@ public class ProductService {
 	}
 	
 	
-	public Product findProductByPzn(String pzn) {
+	public Product findProductByPzn(String pzn) throws ProductNotFoundException {
 		return productRepository.findProductByPzn(pzn).orElseThrow(() -> new ProductNotFoundException("Product by pzn " + pzn + "was not found" ));
 	
 	}

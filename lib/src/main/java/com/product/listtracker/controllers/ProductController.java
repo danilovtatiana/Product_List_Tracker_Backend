@@ -38,14 +38,14 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{pzn}")
-	public ResponseEntity <ProductDto> getProductByPzn(@PathVariable("pzn") String pzn){
+	public ResponseEntity <ProductDto> getProductByPzn(@PathVariable("pzn") String pzn) throws Exception {
 		Product product = productService.findProductByPzn(pzn);
 		ProductDto productDto = new ProductDto(product);
 		return  new ResponseEntity<>(productDto, HttpStatus.OK);
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<ProductDto> addProduct(@RequestBody ProductDto productDto){
+	public ResponseEntity<ProductDto> addProduct(@RequestBody ProductDto productDto)  throws Exception {
 		ProductDto newProduct = productService.addNewProductAndCreateStock(productDto);
 		
 		return new ResponseEntity<>(newProduct, HttpStatus.CREATED);

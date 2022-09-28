@@ -4,14 +4,15 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.BeanUtils;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.product.listtracker.entities.Account;
 
 public class UserDto {
 	
-	private Long accoundId;
+	private Long accountId;
 	private String email;
 	private String username;
-	private LocalDateTime creationDate; 
 	
 	public UserDto() {
 		
@@ -21,12 +22,12 @@ public class UserDto {
 		BeanUtils.copyProperties(user, this, "password");
 	}
 
-	public Long getAccoundId() {
-		return accoundId;
+	public Long getAccountId() {
+		return accountId;
 	}
 
-	public void setAccoundId(Long accoundId) {
-		this.accoundId = accoundId;
+	public void setAccountId(Long accoundId) {
+		this.accountId = accoundId;
 	}
 
 	public String getEmail() {
@@ -44,15 +45,4 @@ public class UserDto {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-	public LocalDateTime getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(LocalDateTime creationDate) {
-		this.creationDate = creationDate;
-	}
-	
-	
-
 }

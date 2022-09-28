@@ -10,5 +10,7 @@ import com.product.listtracker.entities.Account;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long>{
 	Optional<Account> findByEmail(String email);
+	void deleteByEmail(String email);
 	boolean existsByEmail(String email);
+	boolean existsByUsername(String username);
 }

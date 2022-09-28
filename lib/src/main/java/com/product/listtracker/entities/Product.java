@@ -16,6 +16,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.product.listtracker.validators.PznConstraint;
+
 @Entity
 @Table(name = "products")
 public class Product {
